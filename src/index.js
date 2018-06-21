@@ -36,7 +36,7 @@ class AsyncRender extends React.PureComponent{
   }
   render(){
     let { children } = this.state;
-    return children;
+    return children || false;
   }
 }
 export default AsyncRender;
