@@ -12,15 +12,18 @@ class AsyncRender extends React.PureComponent{
     };
   }
   componentDidMount(){
-    let { children } = this.props;
-    this.idleCallbackId = requestIdleCallback(()=>this.setState({ children }));
+    this.requestIdleCallback();
   }
   componentDidUpdate(prevProps, prevState, snapshot){
     let { children } = this.props;
     if(children !== prevProps.children){
       this.cancelIdleCallback();
-      this.idleCallbackId = requestIdleCallback(()=>this.setState({ children }));
+      this.requestIdleCallback();
     }
+  }
+  requestIdleCallback(){
+    let { children } = this.props;
+    this.idleCallbackId = requestIdleCallback(()=>this.setState({ children }));
   }
   cancelIdleCallback(){
     if(this.idleCallbackId){
