@@ -7,14 +7,14 @@ class AsyncRender extends React.PureComponent{
   constructor(props){
     super(props);
 
-    state = {
+    this.state = {
       children: null
     };
   }
   componentDidMount(){
     this.requestIdleCallback();
   }
-  componentDidUpdate(prevProps, prevState, snapshot){
+  componentDidUpdate(prevProps, prevState){
     let { children } = this.props;
     if(children !== prevProps.children){
       this.cancelIdleCallback();
